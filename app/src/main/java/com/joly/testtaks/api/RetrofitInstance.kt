@@ -1,4 +1,4 @@
-package com.joly.testtaks.Api
+package com.joly.testtaks.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

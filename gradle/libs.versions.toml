@@ -1,48 +1,82 @@
 [versions]
-agp = "8.2.0-beta01"
-kotlin = "1.8.10"
+agp = "8.3.0-alpha01"
+kotlin = "1.9.0"
 core-ktx = "1.10.1"
-junit = "4.13.2"
-androidx-test-ext-junit = "1.1.5"
-espresso-core = "3.5.1"
 lifecycle-runtime-ktx = "2.6.1"
 activity-compose = "1.7.2"
+accompanist = "0.32.0"
 compose-bom = "2023.08.00"
-accompanist-systemuicontroller = "0.33.0-alpha"
-retrofit = "2.9.0"
+firebase-bom = "32.2.2"
+okhttp = "4.11.0" #Todo remove
 coil = "2.4.0"
+reorderable = "0.9.6"
+room = "2.5.2"
+gson = "2.10.1"
+json-path = "2.8.0"
+jsoup = "1.16.1"
+cct = "1.6.0"
+ksp = "1.9.10-1.0.13"
+gservices = "4.3.15"
+firebase-crashlytics = "2.9.8"
+perf-plugin = "1.4.2"
+kotlin-comp-ext = "1.5.2"
 navigation-runtime-ktx = "2.6.0"
+koin = "3.4.3"
+retrofit = "2.9.0"
 
 
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
 ui = { group = "androidx.compose.ui", name = "ui" }
+materialIconExt = { group = "androidx.compose.material", name = "material-icons-extended" }
 ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 material3 = { group = "androidx.compose.material3", name = "material3" }
-system-ui-controller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist-systemuicontroller" }
-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
-retofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
-ui-coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
-androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigation-runtime-ktx" }
+accompanistSystemUi = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
+accompanistPermission = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
+coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+reorderable = { group = "org.burnoutcrew.composereorderable", name = "reorderable", version.ref = "reorderable" }
+
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
+firebase-analytics-ktx = { group = "com.google.firebase", name = "firebase-analytics-ktx" }
+firebase-crashlytics-ktx = { group = "com.google.firebase", name = "firebase-crashlytics-ktx" }
+firebase-messaging-ktx = { group = "com.google.firebase", name = "firebase-messaging-ktx" }
+firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx" }
+firebase-perf-ktx = { group = "com.google.firebase", name = "firebase-perf-ktx" }
+
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+json-path = { group = "com.jayway.jsonpath", name = "json-path", version.ref = "json-path" }
+jsoup = { group = "org.jsoup", name = "jsoup", version.ref = "jsoup" }
+cct = { group = "androidx.browser", name = "browser", version.ref = "cct" }
 navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigation-runtime-ktx" }
 compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-runtime-ktx" }
+koinCore = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koinAndroid = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+gservices = { id = "com.google.gms.google-services", version.ref = "gservices" }
+crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebase-crashlytics" }
+firebasePerf = { id = "com.google.firebase.firebase-perf", version.ref = "perf-plugin" }
 
 [bundles]
+ui = ["ui", "materialIconExt", "ui-graphics", "ui-tooling-preview", "material3", "coil", "reorderable"]
+core = ["core-ktx", "lifecycle-runtime-ktx", "activity-compose", "compose-navigation", "navigation-runtime-ktx", "koinCore", "koinAndroid"]
+firebase = ["firebase-analytics-ktx", "firebase-crashlytics-ktx", "firebase-messaging-ktx", "firebase-firestore-ktx", "firebase-perf-ktx"]
+accompanist = ["accompanistSystemUi", "accompanistPermission"]
+room = ["room-runtime", "room-ktx"]
+network = ["okhttp", "gson", "json-path", "jsoup", "cct"]
 retrofit = ["retrofit", "retofit-gson"]
-navigation = ["compose-navigation", "navigation-runtime-ktx"]
-

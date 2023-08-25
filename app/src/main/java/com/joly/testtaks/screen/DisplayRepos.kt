@@ -1,5 +1,6 @@
 package com.joly.testtaks.screen
 
+import android.app.Application
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
@@ -29,18 +30,41 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat.startActivity
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.joly.testtaks.models.appViewModelFactory
+import com.joly.testtaks.models.dataBaseViewModel
 import com.joly.testtaks.models.repos.Repo
+import com.joly.testtaks.models.repos.RepoEntyty.RepoE
 import com.joly.testtaks.viewModel.AppViewModel
 
 class DisplayRepos {
+    private lateinit var dbviewModel: dataBaseViewModel
+
     @Composable
     fun Screen(login: String, viewModel: AppViewModel) {
         val repos by viewModel.repos.observeAsState(emptyList())
         var isLoading by remember { mutableStateOf(false) }
+        val context = LocalContext.current
+        var repoList by remember { mutableStateOf(emptyList<RepoE>()) }
+        dbviewModel =
+            viewModel(factory = appViewModelFactory(context.applicationContext as Application))
         LaunchedEffect(Unit) {
             isLoading = true
+            val fromDB = dbviewModel.getUserRepos(login)
+            if (fromDB.isNotEmpty()) {
+                repoList = fromDB
+                isLoading = false
+            }
             viewModel.fetchUserRepos(login)
+            repoList = emptyList()
+            repos.forEach{
+                repoList += RepoE(
+                    login =login,
+                    repoName = it.name,
+                    mainBranche = it.default_branch
+                )
+            }
+                dbviewModel.replaceAllRepos(repoList, login)
             isLoading = false
         }
         Column (
@@ -67,6 +91,7 @@ class DisplayRepos {
     private @Composable
     fun RepoCard(it: Repo, num: Int) {
         val context = LocalContext.current
+
         Box(
             modifier = Modifier
                 .fillMaxWidth()

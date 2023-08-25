@@ -3,12 +3,15 @@ package com.joly.testtaks.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.joly.testtaks.Api.RetrofitRepository
+import com.joly.testtaks.api.RetrofitRepository
+import com.joly.testtaks.models.dataBaseViewModel
 import com.joly.testtaks.models.repos.Repo
 import com.joly.testtaks.models.users.User
 
 class AppViewModel: ViewModel()  {
     private val repository = RetrofitRepository()
+    private lateinit var dbviewModel: dataBaseViewModel
+
 
     private val _users = MutableLiveData<List<User>>()
     private val _repos = MutableLiveData<List<Repo>>()
@@ -17,8 +20,7 @@ class AppViewModel: ViewModel()  {
 
     suspend fun fetchUsers(since: Int) {
         try{
-            val users = repository.getUsers(since)
-            _users.value = users
+            _users.value = repository.getUsers(since)
         } catch (e: Exception){
             println(e.stackTraceToString())
         }
@@ -26,8 +28,8 @@ class AppViewModel: ViewModel()  {
 
     suspend fun fetchUserRepos(login: String) {
         try {
-            val repos = repository.getUserRepos(login)
-            _repos.value = repos
+            _repos.value = emptyList()
+            _repos.value = repository.getUserRepos(login)
         } catch (e: Exception){
             println(e.stackTraceToString())
         }
