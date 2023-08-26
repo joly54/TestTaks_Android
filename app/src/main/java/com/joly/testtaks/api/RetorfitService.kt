@@ -11,5 +11,9 @@ interface RetorfitService {
     suspend fun getUsers(@Query("since") since: Int, @Query("per_page") per_page : Int): List<User>
 
     @GET("users/{login}/repos")
-    suspend fun getUserRepos(@Path("login") login: String): List<Repo>
+    suspend fun getUserRepos(
+            @Path("login") login: String,
+            @Query("per_page") per_page: Int,
+            @Query("page") page: Int,
+    ): List<Repo>
 }

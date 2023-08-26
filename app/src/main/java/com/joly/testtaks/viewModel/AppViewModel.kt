@@ -18,18 +18,20 @@ class AppViewModel: ViewModel()  {
     val users: LiveData<List<User>> = _users
     val repos: LiveData<List<Repo>> = _repos
 
-    suspend fun fetchUsers(since: Int) {
-        try{
+    suspend fun fetchUsers(since: Int): List<User>? {
+        return try{
             _users.value = repository.getUsers(since)
+            _users.value
         } catch (e: Exception){
             println(e.stackTraceToString())
+            null
         }
     }
 
-    suspend fun fetchUserRepos(login: String) {
+    suspend fun fetchUserRepos(login: String, per_page: Int = 10, page:Int = 1) {
         try {
             _repos.value = emptyList()
-            _repos.value = repository.getUserRepos(login)
+            _repos.value = repository.getUserRepos(login, per_page, page)
         } catch (e: Exception){
             println(e.stackTraceToString())
         }

@@ -14,6 +14,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavHostController
@@ -21,6 +24,8 @@ import androidx.navigation.compose.rememberNavController
 import com.joly.testtaks.navigation.NavClass
 import com.joly.testtaks.ui.theme.TestTaksTheme
 import com.joly.testtaks.viewModel.AppViewModel
+
+var titleTopApp by mutableStateOf("")
 
 class MainActivity : ComponentActivity() {
     private val viewModel: AppViewModel by viewModels()
@@ -45,7 +50,7 @@ class MainActivity : ComponentActivity() {
             topBar = {
                 CenterAlignedTopAppBar(
                     title = {
-                        Text(this.getString(R.string.app_name))
+                        Text(titleTopApp)
                     }
                 )
             }

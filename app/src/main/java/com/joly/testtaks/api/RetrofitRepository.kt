@@ -10,7 +10,7 @@ class RetrofitRepository {
         return userService.getUsers(since, per_page)
     }
 
-    suspend fun getUserRepos(login: String): List<Repo> {
-        return userService.getUserRepos(login)
+    suspend fun getUserRepos(login: String, per_page: Int, page:Int): List<Repo> {
+        return userService.getUserRepos(login, per_page, page)
     }
 }
